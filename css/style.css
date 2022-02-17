@@ -6,7 +6,9 @@ h1{
 }
 #calculate-section{
     background-color: #F8F8F8;
-
+}
+#calculateButton{
+    margin-left: 80%;
 }
 input{
     background-color: #DCDCDC;

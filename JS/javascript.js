@@ -28,7 +28,7 @@ document.getElementById('calculateButton').addEventListener('click',function(){
     const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
     const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
     const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
-    if(typeof incomeInputValue=='string'||typeof foodExpenseInputValue =='string'||typeof rentExpenseInputValue=='string'||typeof clothExpenseInputValue=='string'||incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || clothExpenseInput.value<0){
+    if(incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || clothExpenseInput.value<0){
         errorCalculationMassage.style.display= 'block';
     }
     else{
