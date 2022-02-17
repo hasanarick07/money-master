@@ -16,9 +16,12 @@ function savingAmountCalculation(fullAmount, percentAmount) {
     const percentAmountValue = parseFloat(percentAmount/100);
     return fullAmount*percentAmountValue;
 }
-
+function incomeValueInput() {
+    const incomeValueInput = parseFloat(incomeInput.value);
+    return incomeValueInput;
+}
 document.getElementById('calculateButton').addEventListener('click',function(){
-    const incomeInputValue = parseFloat(incomeInput.value);
+    const incomeInputValue = incomeValueInput();
     const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
     const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
     const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
@@ -29,8 +32,8 @@ document.getElementById('calculateButton').addEventListener('click',function(){
 
 document.getElementById('saveButton').addEventListener('click',function(){
     const savingPercentageValue = parseFloat(savingPercentage.value);
-    const incomeValueInput = parseFloat(incomeInput.value);
-    const savingAmountValue = savingAmountCalculation(incomeValueInput, savingPercentageValue);
+    const incomeInputValue = incomeValueInput();
+    const savingAmountValue = savingAmountCalculation(incomeInputValue, savingPercentageValue);
     savingAmount.innerText = savingAmountValue;
     const remainingBalanceValue = parseFloat(balance.innerText)- parseFloat(savingAmount.innerText);
     remainingBalance.innerText=remainingBalanceValue;
