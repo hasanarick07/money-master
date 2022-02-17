@@ -4,10 +4,12 @@ const rentExpenseInput= document.getElementById('rentExpenseInput');
 const clothExpenseInput= document.getElementById('clothExpenseInput');
 const totalExpanse = document.getElementById('totalExpanse');
 const balance = document.getElementById('balance');
+const errorCalculationMassage = document.getElementById('errorCalculationMassage')
 const errorMassage = document.getElementById('errorMassage');
 const savingPercentage = document.getElementById('savingPercentage');
 const savingAmount = document.getElementById('savingAmount');
 const remainingBalance = document.getElementById('remainingBalance');
+const errorSavingMassage = document.getElementById('errorSavingMassage');
 
 
 function addExpense(food, rent, cloth) {
@@ -22,18 +24,28 @@ function incomeValueInput() {
     return incomeValueInput;
 }
 document.getElementById('calculateButton').addEventListener('click',function(){
-    if(typeof incomeInput.value=='string'||typeof foodExpenseInput.value=='string'||typeof rentExpenseInput.value=='string'||typeof clothExpenseInput.value=='string'||incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || clothExpenseInput.value<0){
-        errorMassage.style.display= 'block';
+    const incomeInputValue = incomeValueInput();
+    const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
+    const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
+    const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
+    if(typeof incomeInputValue=='string'||typeof foodExpenseInputValue =='string'||typeof rentExpenseInputValue=='string'||typeof clothExpenseInputValue=='string'||incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || clothExpenseInput.value<0){
+        errorCalculationMassage.style.display= 'block';
     }
     else{
-        const incomeInputValue = incomeValueInput();
-        const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
-        const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
-        const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
         const gotTotalExpanse = addExpense(foodExpenseInputValue, rentExpenseInputValue, clothExpenseInputValue);
         totalExpanse.innerText=gotTotalExpanse;
         balance.innerText= incomeInputValue-gotTotalExpanse;
-        errorMassage.style.display= 'none';
+        errorCalculationMassage.style.display= 'none';
+    }
+    
+    if(incomeInputValue<totalExpanse.innerText){
+        errorMassage.style.display = 'block';
+    }
+    else if (incomeInputValue>totalExpanse.innerText){
+        errorMassage.style.display = 'none';
+    }
+    else{
+        errorMassage.style.display = 'none';
     }
     
 })
@@ -41,8 +53,23 @@ document.getElementById('calculateButton').addEventListener('click',function(){
 document.getElementById('saveButton').addEventListener('click',function(){
     const savingPercentageValue = parseFloat(savingPercentage.value);
     const incomeInputValue = incomeValueInput();
-    const savingAmountValue = savingAmountCalculation(incomeInputValue, savingPercentageValue);
-    savingAmount.innerText = savingAmountValue;
-    const remainingBalanceValue = parseFloat(balance.innerText)- parseFloat(savingAmount.innerText);
-    remainingBalance.innerText=remainingBalanceValue;
+    if(savingPercentage.value==""||savingPercentage.value<0){
+        errorCalculationMassage.style.display= 'block';
+    }
+    else{
+        const savingAmountValue = savingAmountCalculation(incomeInputValue, savingPercentageValue);
+        savingAmount.innerText = savingAmountValue;
+        const remainingBalanceValue = parseFloat(balance.innerText)- parseFloat(savingAmount.innerText);
+        remainingBalance.innerText=remainingBalanceValue;
+        errorCalculationMassage.style.display= 'none';
+    }
+    if(savingAmount.innerText>balance.innerText){
+        errorSavingMassage.style.display='block';
+    }
+    else if(savingAmount.innerText<balance.innerText){
+        errorSavingMassage.style.display='none';
+    }
+    else{
+        errorSavingMassage.style.display='none';
+    }
 })

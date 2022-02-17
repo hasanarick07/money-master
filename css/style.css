@@ -13,6 +13,18 @@ input{
     border-color: white;
     border: 0px;
 }
+#errorCalculationMassage{
+    display: none;
+    color: red;
+    font-weight: 700;
+}
 #errorMassage{
     display: none;
+    color: red;
+    font-weight: 700;
+}
+#errorSavingMassage{
+    display: none;
+    color: red;
+    font-weight: 700;
 }
