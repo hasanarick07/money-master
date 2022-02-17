@@ -22,7 +22,7 @@ function incomeValueInput() {
     return incomeValueInput;
 }
 document.getElementById('calculateButton').addEventListener('click',function(){
-    if(incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || foodExpenseInput.value<0){
+    if(typeof incomeInput.value=='string'||typeof foodExpenseInput.value=='string'||typeof rentExpenseInput.value=='string'||typeof clothExpenseInput.value=='string'||incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || clothExpenseInput.value<0){
         errorMassage.style.display= 'block';
     }
     else{
