@@ -4,6 +4,7 @@ const rentExpenseInput= document.getElementById('rentExpenseInput');
 const clothExpenseInput= document.getElementById('clothExpenseInput');
 const totalExpanse = document.getElementById('totalExpanse');
 const balance = document.getElementById('balance');
+const errorMassage = document.getElementById('errorMassage');
 const savingPercentage = document.getElementById('savingPercentage');
 const savingAmount = document.getElementById('savingAmount');
 const remainingBalance = document.getElementById('remainingBalance');
@@ -21,13 +22,20 @@ function incomeValueInput() {
     return incomeValueInput;
 }
 document.getElementById('calculateButton').addEventListener('click',function(){
-    const incomeInputValue = incomeValueInput();
-    const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
-    const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
-    const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
-    const gotTotalExpanse = addExpense(foodExpenseInputValue, rentExpenseInputValue, clothExpenseInputValue);
-    totalExpanse.innerText=gotTotalExpanse;
-    balance.innerText= incomeInputValue-gotTotalExpanse;
+    if(incomeInput.value=="" || foodExpenseInput.value=="" || rentExpenseInput.value=="" || clothExpenseInput.value=="" || incomeInput.value<0 || foodExpenseInput.value<0 || rentExpenseInput.value<0 || foodExpenseInput.value<0){
+        errorMassage.style.display= 'block';
+    }
+    else{
+        const incomeInputValue = incomeValueInput();
+        const foodExpenseInputValue = parseFloat(foodExpenseInput.value);
+        const rentExpenseInputValue = parseFloat(rentExpenseInput.value);
+        const clothExpenseInputValue = parseFloat(clothExpenseInput.value);
+        const gotTotalExpanse = addExpense(foodExpenseInputValue, rentExpenseInputValue, clothExpenseInputValue);
+        totalExpanse.innerText=gotTotalExpanse;
+        balance.innerText= incomeInputValue-gotTotalExpanse;
+        errorMassage.style.display= 'none';
+    }
+    
 })
 
 document.getElementById('saveButton').addEventListener('click',function(){

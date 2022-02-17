@@ -13,3 +13,6 @@ input{
     border-color: white;
     border: 0px;
 }
+#errorMassage{
+    display: none;
+}
